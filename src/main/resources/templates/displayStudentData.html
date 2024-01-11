@@ -8,7 +8,7 @@
 <body>
 <div align="center">
     <h1  class="fw-light">STUDENT INFORMATION</h1>
-    <table border="1" >
+    <table border="1" class="table table-bordered">
         <tr>
             <th>ROLL NUMBER</th>
             <th>STUDENT NAME</th>
@@ -17,6 +17,7 @@
             <th>TOTAL MARKS</th>
             <th>OBTAIN MARKS</th>
             <th>PERCENTAGE</th>
+            <th>OPERATION</th>
         </tr>
 
         <tr th:each="data:${studentData}" th:style="${((data.studentObtainMarks*100)/data.studentTotalMarks)>=35?'background-color:green':'background-color:red'}">
@@ -27,9 +28,12 @@
             <td th:text="${data.studentTotalMarks}"></td>
             <td th:text="${data.studentObtainMarks}"></td>
             <td th:text="${(data.studentObtainMarks*100)/data.studentTotalMarks}"></td>
+
+            <td><a th:href="@{/updateStudent/{id}(id=${data.studentRollNumber})}">UPDATE</a></td>
+            <td><a th:href="@{/deleteStudent/{id}(id=${data.studentRollNumber})}">DELETE</a></td>
         </tr>
     </table>
+    <a href="/addStudent"><button class="btn btn-secondary">ADD STUDENT</button></a>
 </div>
-
 </body>
 </html>
